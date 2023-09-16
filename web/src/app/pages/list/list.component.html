@@ -19,8 +19,8 @@
             <span>{{ data.amount }}</span>
             <span>
               <fa-icon [icon]="faIconCheck" size="lg" [class.fa-marked]="data.status === 'DONE'" [class.fa-edit]="data.status !== 'DONE'" (click)="mark(i)"></fa-icon>
-              <fa-icon [icon]="faIconEdit" size="lg" [class.fa-marked]="data.status === 'EDITING'" [class.fa-edit]="data.status !== 'EDITING'" *ngIf="data.status !== 'DONE'" (click)="edit(i)"></fa-icon>
-              <fa-icon [icon]="faIconTrash" size="lg" [class.fa-marked]="data.status === 'DELETING'" [class.fa-trash]="data.status !== 'DELETING'" *ngIf="data.status !== 'DONE'" (click)="remove(i)"></fa-icon>
+              <fa-icon [icon]="faIconEdit" size="lg" [class.fa-marked]="data.editStatus === 'EDITING'" [class.fa-edit]="data.editStatus !== 'EDITING'" *ngIf="data.status !== 'DONE'" (click)="edit(i)"></fa-icon>
+              <fa-icon [icon]="faIconTrash" size="lg" [class.fa-marked]="data.deleteStatus === 'DELETING'" [class.fa-trash]="data.deleteStatus !== 'DELETING'" *ngIf="data.status !== 'DONE'" (click)="remove(i)"></fa-icon>
             </span>
           </td>
         </tr>
