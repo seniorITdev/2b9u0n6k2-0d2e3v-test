@@ -70,9 +70,10 @@ export class TravelService {
   setEditData(index: number) {
     const currentExpenses = this.expenseList.getValue();
     const selectedIndex = this.selectedExpenseIndex.getValue();
+    console.log("test", { index, currentExpenses, selectedIndex });
     
     if(index === selectedIndex) {
-      currentExpenses[index].status = ExpenseStatus.ACTIVE;
+      currentExpenses[index].status = ExpenseStatus.EDITING;
     } else {
       if(selectedIndex !== null) currentExpenses[selectedIndex].status = ExpenseStatus.ACTIVE;
       currentExpenses[index].status = ExpenseStatus.EDITING;
