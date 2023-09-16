@@ -1,0 +1,3 @@
+This program  calculates how much each user owes or is owed based on the expenses incurred. The calculation is designed to ensure that, in the end, each user pays an equal share, and there is no outstanding debt.
+
+It takes an array of 'Expense' objects as input. Each 'Expense' object likely represents an individual expense incurred by a user in a group. These expenses could be for various things like meals, accommodations, or shared costs.

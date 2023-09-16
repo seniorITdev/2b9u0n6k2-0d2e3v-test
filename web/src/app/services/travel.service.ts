@@ -72,9 +72,9 @@ export class TravelService {
     const selectedIndex = this.selectedExpenseIndex.getValue();
     
     if(index === selectedIndex) {
-      currentExpenses[index].status = ExpenseStatus.ACTIVE;
+      currentExpenses[index].status = ExpenseStatus.EDITING;
     } else {
-      if(selectedIndex !== null) currentExpenses[selectedIndex].status = ExpenseStatus.ACTIVE;
+      if(selectedIndex !== null) currentExpenses[selectedIndex].status = ExpenseStatus.EDITING;
       currentExpenses[index].status = ExpenseStatus.EDITING;
     }
     this.formStatus.next(UpdateStatus.EDIT);
