@@ -23,7 +23,7 @@ export class TravelService {
   });
   private isLoading = new BehaviorSubject<boolean>(false);
   private formStatus = new BehaviorSubject<string>(UpdateStatus.ADD);
-  private selectedExpenseIndex = new BehaviorSubject<number | null>(null); 
+  private selectedExpenseIndex = new BehaviorSubject<number | null>(null);
 
   expenseList$ = this.expenseList.asObservable();
   payoutData$ = this.payoutData.asObservable();
@@ -37,7 +37,7 @@ export class TravelService {
   ) {
     this.apiUrl = `${config.environment.apiURL}`;
   }
-  
+
   addExpense(newExpense: Expense) {
     const currentExpenses = this.expenseList.getValue();
     currentExpenses.push(newExpense);
@@ -70,9 +70,9 @@ export class TravelService {
   setEditData(index: number) {
     const currentExpenses = this.expenseList.getValue();
     const selectedIndex = this.selectedExpenseIndex.getValue();
-    
+
     if(index === selectedIndex) {
-      currentExpenses[index].status = ExpenseStatus.ACTIVE;
+      currentExpenses[index].status = ExpenseStatus.EDITING;
     } else {
       if(selectedIndex !== null) currentExpenses[selectedIndex].status = ExpenseStatus.ACTIVE;
       currentExpenses[index].status = ExpenseStatus.EDITING;
@@ -85,7 +85,7 @@ export class TravelService {
     const currentExpenses = this.expenseList.getValue();
     const selectedIndex = this.selectedExpenseIndex.getValue();
     if(index === selectedIndex) {
-      currentExpenses[index].status = ExpenseStatus.ACTIVE;
+      currentExpenses[index].status = ExpenseStatus.DELETING;
     } else {
       if(selectedIndex !== null) currentExpenses[selectedIndex].status = ExpenseStatus.ACTIVE;
       currentExpenses[index].status = ExpenseStatus.DELETING;
