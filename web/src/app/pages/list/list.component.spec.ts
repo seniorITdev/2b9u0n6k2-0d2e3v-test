@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { ListComponent } from './list.component';
 
@@ -19,5 +20,17 @@ describe('ListComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should edit-button color green when click it after delete-button click', () => {
+    const deleteButton = fixture.debugElement.query(By.css('fa-icon[icon="faIconTrash"]')).nativeElement;
+    deleteButton.click();
+
+    const editButton = fixture.debugElement.query(By.css('fa-icon[icon="faIconEdit"]')).nativeElement;
+    editButton.click();
+
+    fixture.detectChanges();
+
+    expect(editButton.style.backgroundColor).toBe('green');
   });
 });
