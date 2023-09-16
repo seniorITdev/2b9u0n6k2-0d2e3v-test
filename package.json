@@ -6,6 +6,7 @@
     "start-api": "cd api && npm start",
     "start-web": "cd web && ng serve",
     "test": "cd api && npm test",
+    "test-front": "cd web && npm test",
     "e2e": "concurrently \"npm run start\" \"npx cypress run\""
   },
   "devDependencies": {
