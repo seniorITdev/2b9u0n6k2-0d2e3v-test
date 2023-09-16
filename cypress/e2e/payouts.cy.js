@@ -11,8 +11,13 @@ describe('Payouts', () => {
     cy.get('[data-testid="name-input"]').type('Bao');
     cy.get('[data-testid="amount-input"]').type('12');
     cy.get('[data-testid="add-expense-button"]').click();
+    cy.get('[data-testid="edit-button-0"]').click();
+    cy.get('[data-testid="edit-button-0"]').should('have.class', 'fa-marked');
+    cy.get('[data-testid="delete-button-0"]').click();
+    cy.get('[data-testid="edit-button-0"]').should('have.class', 'fa-marked');
 
     cy.get('[data-testid="settle-up-button"]').click();
+
 
     cy.get('[data-testid="total"]').should('contain.text', '23.5');
     cy.get('[data-testid="equal-share"]').should('contain.text', '11.75');

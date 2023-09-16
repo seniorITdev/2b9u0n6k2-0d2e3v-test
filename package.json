@@ -6,11 +6,12 @@
     "start-api": "cd api && npm start",
     "start-web": "cd web && ng serve",
     "test": "cd api && npm test",
-    "e2e": "concurrently \"npm run start\" \"npx cypress run\""
+    "e2e": "concurrently \"npm run start\" \"wait-on http://localhost:4200 && npx cypress run\""
   },
   "devDependencies": {
     "concurrently": "^8.2.0",
-    "cypress": "^12.16.0"
+    "cypress": "^12.16.0",
+    "wait-on": "^7.0.1"
   },
   "dependencies": {
     "postinstall": "^0.8.0"
