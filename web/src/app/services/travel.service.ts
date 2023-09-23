@@ -69,7 +69,6 @@ export class TravelService {
 
   setEditData(index: number) {
     const currentExpenses = this.expenseList.getValue();
-    const selectedIndex = this.selectedExpenseIndex.getValue();
     currentExpenses[index].status = ExpenseStatus.EDITING;
     this.formStatus.next(UpdateStatus.EDIT);
     this.selectedExpenseIndex.next(index);
@@ -77,7 +76,6 @@ export class TravelService {
 
   setRemoveData(index: number) {
     const currentExpenses = this.expenseList.getValue();
-    const selectedIndex = this.selectedExpenseIndex.getValue();
     currentExpenses[index].status = ExpenseStatus.DELETING;
     this.formStatus.next(UpdateStatus.DELETE);
     this.selectedExpenseIndex.next(index);
