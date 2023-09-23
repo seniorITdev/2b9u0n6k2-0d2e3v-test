@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewChecked, OnDestroy, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, OnDestroy, ElementRef, ViewChild, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TravelService } from 'src/app/services/travel.service';
 import { ExpenseStatus } from 'src/app/enums/ExpenseStatus';
@@ -12,6 +12,7 @@ import { combineLatest, Subscription } from 'rxjs';
 })
 export class AddComponent implements OnInit, AfterViewChecked, OnDestroy {
   @ViewChild('name_input') nameInput: ElementRef | null = null;
+  @Output() itemAdded: EventEmitter<void> = new EventEmitter<void>();
   form: FormGroup;
   status: string | null = null;
   formStatus = this.travelService.formStatus$;
@@ -77,6 +78,7 @@ export class AddComponent implements OnInit, AfterViewChecked, OnDestroy {
         price: new FormControl(0, [Validators.required, Validators.min(1)]),
       });
     }
+    this.itemAdded.emit();
   }
 
   delete() {
