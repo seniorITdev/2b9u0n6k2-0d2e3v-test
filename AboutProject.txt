@@ -1,1 +1,18 @@
 What does this project do?
+
+
+This backend service calculates how to evenly split expenses among a group of travelers.
+
+The main logic is in the mapPayouts function. It takes an array of expense objects, where each object contains the name of the traveler and the amount they paid.
+
+It first sums the total amount paid by each traveler. Then it calculates the average amount per traveler.
+
+Next, it computes the difference between what each traveler paid and the average. A positive difference means the traveler is owed money. A negative difference means they owe money.
+
+It sorts the travelers by amount owed or due. Then it pairs up the travelers who owe the most with those who are owed the most. It iterates through the sorted list, making these pairings, until all debts are settled.
+
+The result is an array of payout objects that state who owes whom and how much.
+
+The PayoutService class handles HTTP requests. It calls mapPayouts to calculate the payouts from the request body's expenses. It returns the payouts in the response or a 400 error if something goes wrong.
+
+It uses the isEqual helper to compare numbers, considering very small differences as equal due to floating point imprecision.

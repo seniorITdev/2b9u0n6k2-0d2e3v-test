@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { faEdit, faTrash, faCheck, IconDefinition } from '@fortawesome/free-solid-svg-icons';
@@ -17,10 +17,25 @@ export class ListComponent {
   readonly faIconTrash: IconDefinition = faTrash;
   readonly faIconCheck: IconDefinition = faCheck;
   
+  @ViewChild('expense_table') private tableRef: ElementRef | null = null;
+
   constructor(
     private router: Router,
     private travelService: TravelService,
   ) {}
+
+  ngOnInit() {
+    // Other initialization code
+  
+    // Scroll the tableRef to the bottom after data is loaded
+    this.expenseList.subscribe(() => {
+      this.scrollToBottom();
+    });
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
 
   remove(index: number): void {
     this.travelService.setRemoveData(index);
@@ -37,5 +52,14 @@ export class ListComponent {
 
   mark(index: number): void {
     this.travelService.markExpense(index);
+  }
+
+  scrollToBottom() {
+    if(this.tableRef)
+    {
+      try {
+        this.tableRef.nativeElement.scrollTop = this.tableRef.nativeElement.scrollHeight;
+      } catch(err) {console.error(err)}
+    } else return;
   }
 }
