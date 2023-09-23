@@ -83,7 +83,7 @@ export class AddComponent implements OnInit, AfterViewChecked, OnDestroy {
     this.travelService.removeExpense();
     this.travelService.setAddStatus();
   }
-  
+
   cancel() {
     this.travelService.setAddStatus();
   }

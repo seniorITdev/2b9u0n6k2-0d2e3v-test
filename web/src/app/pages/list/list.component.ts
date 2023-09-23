@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { faEdit, faTrash, faCheck, IconDefinition } from '@fortawesome/free-solid-svg-icons';
@@ -11,16 +11,25 @@ import { TravelService } from '../../services/travel.service';
   styleUrls: ['./list.component.scss'],
 })
 export class ListComponent {
+  @ViewChild('expense_table') private expenseTable!: ElementRef;
   expenseList: Observable<Expense[]> = this.travelService.expenseList$;
 
   readonly faIconEdit: IconDefinition = faEdit;
   readonly faIconTrash: IconDefinition = faTrash;
   readonly faIconCheck: IconDefinition = faCheck;
-  
+
   constructor(
     private router: Router,
     private travelService: TravelService,
   ) {}
+
+  ngAfterViewChecked(): void {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    this.expenseTable.nativeElement.scrollTop = this.expenseTable.nativeElement.scrollHeight;
+  }
 
   remove(index: number): void {
     this.travelService.setRemoveData(index);
