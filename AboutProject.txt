@@ -1,1 +1,52 @@
 What does this project do?
+
+Frontend
+
+List Component:
+
+Features an "add" component (<app-add>) which, when an item is added, triggers a scrollToBottom() method to possibly scroll the view.
+Displays a table of expenses. Each expense has:
+An index number.
+A name.
+An amount.
+Action buttons/icons:
+Mark: To possibly mark the status of the expense.
+Edit: To edit the expense, shown if the status is not "DONE".
+Delete: To remove the expense, also shown if the status is not "DONE".
+At the bottom, there is a "Settle Up" button.
+Result Component:
+
+Shows a summary table if there's payout data available. This includes:
+Total amount spent.
+Average amount spent per person.
+Displays a loading spinner while waiting for data.
+Lists payout information which includes:
+Who owes money (Debtor).
+Who should be paid (Creditor).
+How much should be paid.
+Displays "No Payout" if there are no payouts.
+Routing:
+
+Directs the user to /list if they access the root path (/).
+Contains routes to the ListComponent and the ResultComponent, accessible via /list and /result, respectively.
+Backend
+
+Express Route:
+
+Utilizes an Express router to define a POST route for handling payout calculations.
+PayoutService:
+
+Contains logic to calculate payouts and respond to client requests.
+Handles incoming POST requests by:
+Extracting the expenses from the request.
+Computing the payouts using the mapPayouts function.
+Sending back the calculated payouts as a response.
+If there's an error, it sends back a 400 status code.
+mapPayouts Function:
+
+First, totals up how much each traveler (individual) has spent.
+Calculates the total amount spent and the average amount that each traveler should have spent.
+Balances the expenses so that each traveler owes or is owed a certain amount of money. If one traveler has spent more than the average, they are owed money. If they've spent less, they owe money.
+Determines which travelers owe money to which others and how much.
+Returns the total amount, the equal share, and the list of individual payouts.
+The project appears to be a split expense calculator, perhaps designed for group trips or outings. On the frontend, users can list expenses, and on the backend, the application calculates who owes what amount to whom based on the listed expenses.
