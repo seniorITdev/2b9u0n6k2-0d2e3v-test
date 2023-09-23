@@ -4,6 +4,7 @@ import { TravelService } from 'src/app/services/travel.service';
 import { ExpenseStatus } from 'src/app/enums/ExpenseStatus';
 import { UpdateStatus } from 'src/app/enums/UpdateStatus';
 import { combineLatest, Subscription } from 'rxjs';
+import { ScrollService } from 'src/app/services/scroll.service';
 
 @Component({
   selector: 'app-add',
@@ -20,7 +21,8 @@ export class AddComponent implements OnInit, AfterViewChecked, OnDestroy {
   private shouldFocusInput = false;
 
   constructor(
-    private travelService: TravelService
+    private travelService: TravelService,
+    private scrollService: ScrollService,
   ) {
     this.form = new FormGroup({
       name: new FormControl('', Validators.required),
@@ -76,6 +78,7 @@ export class AddComponent implements OnInit, AfterViewChecked, OnDestroy {
         name: new FormControl('', Validators.required),
         price: new FormControl(0, [Validators.required, Validators.min(1)]),
       });
+      this.scrollService.triggerScrollToBottom();
     }
   }
 
