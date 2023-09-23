@@ -23,7 +23,7 @@ export class TravelService {
   });
   private isLoading = new BehaviorSubject<boolean>(false);
   private formStatus = new BehaviorSubject<string>(UpdateStatus.ADD);
-  private selectedExpenseIndex = new BehaviorSubject<number | null>(null); 
+  private selectedExpenseIndex = new BehaviorSubject<number | null>(null);
 
   expenseList$ = this.expenseList.asObservable();
   payoutData$ = this.payoutData.asObservable();
@@ -37,7 +37,7 @@ export class TravelService {
   ) {
     this.apiUrl = `${config.environment.apiURL}`;
   }
-  
+
   addExpense(newExpense: Expense) {
     const currentExpenses = this.expenseList.getValue();
     currentExpenses.push(newExpense);
@@ -47,7 +47,7 @@ export class TravelService {
   editExpense(newExpense: Expense) {
     const currentExpenses = this.expenseList.getValue();
     const index = this.selectedExpenseIndex.getValue();
-    if(index !== null) currentExpenses[index] = newExpense;
+    if (index !== null) currentExpenses[index] = newExpense;
     this.selectedExpenseIndex.next(null);
     this.selectedExpenseIndex.next(null);
   }
@@ -63,34 +63,27 @@ export class TravelService {
   setAddStatus() {
     const currentExpenses = this.expenseList.getValue();
     const selectedIndex = this.selectedExpenseIndex.getValue();
-    if(selectedIndex !== null) currentExpenses[selectedIndex].status = ExpenseStatus.ACTIVE;
+    if (selectedIndex !== null) currentExpenses[selectedIndex].status = ExpenseStatus.ACTIVE;
     this.formStatus.next(UpdateStatus.ADD);
   }
 
   setEditData(index: number) {
     const currentExpenses = this.expenseList.getValue();
-    const selectedIndex = this.selectedExpenseIndex.getValue();
-    
-    if(index === selectedIndex) {
-      currentExpenses[index].status = ExpenseStatus.ACTIVE;
-    } else {
-      if(selectedIndex !== null) currentExpenses[selectedIndex].status = ExpenseStatus.ACTIVE;
-      currentExpenses[index].status = ExpenseStatus.EDITING;
-    }
-    this.formStatus.next(UpdateStatus.EDIT);
+    if (currentExpenses[index].status === ExpenseStatus.EDITING)
+      return
+    currentExpenses[index].status = ExpenseStatus.EDITING;
+    const formStatus = currentExpenses[index].status === ExpenseStatus.EDITING ? UpdateStatus.EDIT : UpdateStatus.ADD;
+    this.formStatus.next(formStatus);
     this.selectedExpenseIndex.next(index);
   }
 
   setRemoveData(index: number) {
     const currentExpenses = this.expenseList.getValue();
-    const selectedIndex = this.selectedExpenseIndex.getValue();
-    if(index === selectedIndex) {
-      currentExpenses[index].status = ExpenseStatus.ACTIVE;
-    } else {
-      if(selectedIndex !== null) currentExpenses[selectedIndex].status = ExpenseStatus.ACTIVE;
-      currentExpenses[index].status = ExpenseStatus.DELETING;
-    }
-    this.formStatus.next(UpdateStatus.DELETE);
+    if (currentExpenses[index].status === ExpenseStatus.DELETING)
+      return
+    currentExpenses[index].status = ExpenseStatus.DELETING;
+    const formStatus = currentExpenses[index].status === ExpenseStatus.DELETING ? UpdateStatus.DELETE : UpdateStatus.ADD;
+    this.formStatus.next(formStatus);
     this.selectedExpenseIndex.next(index);
   }
 
@@ -102,7 +95,7 @@ export class TravelService {
   getSelectedExpense() {
     const currentExpenses = this.expenseList.getValue();
     const index = this.selectedExpenseIndex.getValue();
-    return index !== null ?currentExpenses[index] : null;
+    return index !== null ? currentExpenses[index] : null;
   }
 
   getPayouts() {
