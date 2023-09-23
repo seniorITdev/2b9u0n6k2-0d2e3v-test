@@ -1,1 +1,55 @@
 What does this project do?
+
+This project handles a common problem when travelling in a group: splitting costs. Each traveller records their expenses, and at the end, the server calculates who owes who and how much, so that everyone has spent an equal amount.
+
+1. Backend
+simple Express.js server with a single route, /payouts, which calculates the payout among travellers based on the expenses they have spent.
+
+payout.interface.ts:
+This file declares the TypeScript interfaces for the data structures used in the application.
+
+- Payout: Represents a single payout, containing who owes who and how much.
+- Expense: Represents an expense made by a traveller.
+- PayoutResponse: The response sent by the server, containing the total amount spent, the equal share each traveller should have spent, and the payouts.
+- Traveller: A record of traveller names to the amount they have spent.
+
+payouts.route.ts:
+Sets up the /payouts route. When a POST request is made to this route, it calls the handleRequest method of the PayoutService.
+
+payoutService.ts:
+Contains the logic for calculating the payouts among travellers.
+
+- isEqual(a: number, b: number): Checks if two numbers are equal within a small error margin.
+- mapPayouts(expenses: Expense[]): Calculates the payouts among travellers based on their expenses.
+- PayoutService: The class that handles the request to calculate payouts.
+
+index.ts:
+This is the entry point of the server. It sets up the express server and middleware, registers the /payouts route, and starts the server.
+
+2. Frontend
+
+add component: These files define a form component for adding or editing travel expenses. The form includes fields for the traveller's name and the expense amount.
+
+footer component: These files define a footer component that displays a copyright message.
+
+header.component: These files define a header component with navigation links.
+
+ExpenseStatus.ts and UpdateStatus.ts: These files define TypeScript enums for expense and update statuses.
+
+environment-config.interface.ts: This file defines an interface and an injection token for environment configuration.
+
+travel.interface.ts: This file defines interfaces for travel expenses and payouts.
+
+list.component: These files define a component for displaying a list of travel expenses. The user can mark an expense as done, edit an expense, or remove an expense.
+
+result.component: These files define a component for displaying the result of settling up all expenses.
+
+travel.service.ts: This file defines a service for managing travel expenses and payouts. It includes methods for adding, editing, removing, and marking expenses, as well as for getting payouts.
+
+app.component: These files define the root component of the application. It includes a header, a router outlet for displaying the currently selected route, and a footer.
+
+app.module.ts: This file defines the root module of the application. It declares all components and imports necessary modules.
+
+app-routing.module.ts: This file defines the routes for the application.
+
+http.module.ts: This file defines a module for HTTP communication. It provides an injection token for environment configuration.
