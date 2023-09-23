@@ -1,1 +1,12 @@
 What does this project do?
+
+In the list page, can add user name and price that user debit.
+When settleUp is clicked then go to the payout page.
+
+The payout page does these thing.
+- Summing up the expenses for each traveler.
+- Calculating the average expense per traveler.
+- Determining who owes money and who is owed money to balance the expenses using average.
+- Creating a list of Payout objects, which represent the transactions needed to settle the balances.
+
+In summarize, this app calculating the average price of total value and determin which traveler owes money and generate list of transcations needed to settle the balance.
