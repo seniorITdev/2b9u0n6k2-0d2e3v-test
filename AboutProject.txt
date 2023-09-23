@@ -1,1 +1,19 @@
-What does this project do?
+This project is a travel expense tracker application developed using Angular. It allows users to record and manage their travel expenses, providing a convenient and efficient way for travelers to keep track of their spending during a trip.
+
+The application is composed of several components:
+
+1. `AddComponent`: This component allows users to enter their expense details, including the traveler's name and the amount of the expense. Users can add new expenses, edit existing ones, or delete them. The form fields are validated to ensure that the name is not empty and the price is greater than 0.
+
+2. `ListComponent`: This component displays a list of all the expenses that have been entered. Each expense can be marked as done, edited, or deleted. The list automatically scrolls to the bottom whenever a new expense is added.
+
+3. `ResultComponent`: This component displays the total and average expenses, as well as a detailed list of payouts. It also handles loading states and displays a spinner while the payout data is being fetched.
+
+4. `TravelService`: This service handles all the data-related operations of the application, such as adding, editing, and deleting expenses, calculating payouts, and managing the loading state. It uses a BehaviorSubject to maintain a stream of the current state of the expenses and payouts.
+
+The workflow of the application is as follows:
+
+- Users start by entering their expense details in the form provided by the `AddComponent`. The form fields are validated, and if the input is valid, the expense is added to the list.
+- The `ListComponent` displays all the expenses that have been entered. Users can mark an expense as done, edit it, or delete it.
+- Users can click the "Settle Up" button to calculate the payouts. The `TravelService` sends a POST request to the backend API with the list of expenses as the payload.
+- The `ResultComponent` displays the total and average expenses, as well as a detailed list of payouts. If the payout data is still being fetched, a spinner is displayed to indicate the loading state.
+- Users can continue to add, edit, or delete expenses. The list of expenses and the payout data are updated in real time.
