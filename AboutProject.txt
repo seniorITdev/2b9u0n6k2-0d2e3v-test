@@ -1,1 +1,20 @@
 What does this project do?
+
+This project  helps manage and settle expenses for a group of people, such as when traveling together.
+The application allows users to add, edit, and remove expenses, and then calculates how much each person owes or is owed to settle up all the expenses.
+
+Here are the key parts of the application:
+
+1. TravelService: This is the main service that manages the state of the application. It uses BehaviorSubject to store the current list of expenses, the selected expense, the status of the form (whether it's in add, edit, or delete mode), and whether the application is currently loading data from the backend. It provides methods to add, edit, and remove expenses, as well as to calculate the payouts.
+
+2. ListComponent: This is the component that displays the list of expenses. It allows the user to add new expenses, edit or delete existing ones, and mark them as done. Once all expenses are entered, the user can click on the "Settle Up" button to calculate the payouts.
+
+3. ResultComponent: This component displays the results of the payout calculation. It shows how much each person owes or is owed.
+
+4. AppRoutingModule: This module sets up the routing for the application. It defines two routes: '/list' for the list of expenses and '/result' for the payout results.
+
+5. AppModule: This is the main module of the application. It imports all necessary modules and declares all components and services used in the application.
+
+The application appears to have a clean architecture and follows good practices for an Angular application. The separation of concerns is well done, with the service managing the state and the components managing the display and user interactions.
+
+
