@@ -1,1 +1,21 @@
 What does this project do?
+
+Backend
+
+This script is for a service that calculates how to evenly distribute expenses among a group of travellers. The logic is as follows:
+
+1. **mapPayouts function:** This function receives an array of expenses. Each expense is an object containing the name of the traveller who paid the expense and the amount of the expense.
+
+   - First, it calculates the total amount each traveller has paid by iterating over the expenses array.
+
+   - Then, it calculates the average amount that each traveller should have paid by dividing the total amount by the number of travellers.
+
+   - Next, it calculates how much each traveller owes or is owed by subtracting the average from the amount each traveller has paid. A positive amount means the traveller is owed money, and a negative amount means the traveller owes money.
+
+   - It then sorts the travellers by the amount they owe or are owed.
+
+   - Finally, it calculates the payouts. It iterates over the sorted travellers from both ends, pairing the traveller who owes the most with the traveller who is owed the most. It continues this process, moving inwards, until all debts are settled. The result is an array of payouts, where each payout is an object containing the names of the travellers who owe and are owed money, and the amount of money to be paid.
+
+2. **PayoutService class:** This class contains a method, `handleRequest`, that handles HTTP requests. It extracts the expenses from the request body, uses the `mapPayouts` function to calculate the payouts, and sends the payouts in the response. If an error occurs, it sends a 400 status code along with the error.
+
+The `isEqual` function is a helper function that checks if two numbers are approximately equal, considering a very small difference as equal due to the precision problems of floating-point arithmetic.
