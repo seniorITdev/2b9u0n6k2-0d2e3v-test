@@ -32,7 +32,10 @@ export class ListComponent {
     this.expenseList.subscribe(list => {
       if (list.length !== this.previousListLength) {
         this.previousListLength = list.length;
-        this.renderer.setProperty(this.table.nativeElement, 'scrollTop', this.table.nativeElement.scrollHeight);
+        // this.renderer.setProperty(this.table.nativeElement, 'scrollTop', this.table.nativeElement.scrollHeight);
+        setTimeout(() => {
+          this.table.nativeElement.scrollTop = this.table.nativeElement.scrollHeight;
+        });
       }
     });
   }
