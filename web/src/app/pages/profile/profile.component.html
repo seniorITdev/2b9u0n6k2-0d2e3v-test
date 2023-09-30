@@ -1,0 +1,23 @@
+<!-- profile.component.html -->
+<div class="form-group">
+    <label for="primarySkill">Primary Skill</label>
+    <select [(ngModel)]="selectedSkill" name="primarySkill" 
+            class="form-control" id="primarySkill" required 
+            #primarySkill="ngModel">
+      <option *ngFor="let skill of skills" [value]="skill">{{skill}}</option>
+    </select>
+    <div *ngIf="primarySkill.invalid && (primarySkill.dirty || primarySkill.touched)" 
+         class="alert alert-danger">
+      <div *ngIf="primarySkill.errors?.['required']">
+        Primary skill is required.
+      </div>
+    </div>
+</div>
+  
+<div class="form-group">
+    <label>Skills</label>
+    <div *ngFor="let skill of skills">
+      <input type="checkbox" (change)="onCheckboxChange($event)" [value]="skill">{{skill}}
+    </div>
+</div>
+<button [disabled]="!primarySkill.valid">Submit</button>
