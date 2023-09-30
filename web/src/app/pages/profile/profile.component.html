@@ -1,0 +1,21 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)" style="display: flex; flex-direction: column; max-width: 500px; margin: auto;">
+    <div>
+        <label for="primarySkill" style="padding-right: 20px;">Primary Skill : </label>
+        <select id="primarySkill" name="primarySkill" required #primarySkill="ngModel"
+        [(ngModel)]="selectedLanguage">
+        <option *ngFor="let language of languages" [value]="language">{{ language }}</option>
+        </select>
+        <div *ngIf="primarySkill.invalid && (primarySkill.touched || submitted)" style="color: red;">Primary Skill is required</div>
+    </div>
+  
+    <div style="margin: 20px 00px;">
+        <label class="label-padding">Skills</label>
+        <div *ngFor="let skill of skills" style="margin-left: 20px;">
+            <input type="checkbox" id="{{skill}}" name="{{skill}}" value="{{skill}}"
+            [(ngModel)]="selectedLanguage === skill ? true : selectedSkills[skill]" [disabled]="isDisabled(skill)">
+            <label for="{{skill}}">{{skill}}</label>
+        </div>
+    </div>
+  
+    <button type="submit">Submit</button>
+  </form>
