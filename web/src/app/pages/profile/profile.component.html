@@ -28,6 +28,7 @@
             id="{{ skill }}"
             [value]="skill"
             [disabled]="form.get('primarySkill')?.value === skill"
+            [checked]="form.get('primarySkill')?.value === skill"
           />
           <label class="form-check-label" for="{{ skill }}">
             {{ skill }}
