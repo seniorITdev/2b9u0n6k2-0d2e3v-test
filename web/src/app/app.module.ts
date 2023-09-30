@@ -17,7 +17,7 @@ import { ListComponent } from './pages/list/list.component';
 import { ResultComponent } from './pages/result/result.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-
+import { ProfileComponent } from './pages/profile/profile.component';
 import { JsonPipe } from '@angular/common';
 
 @NgModule({
@@ -28,6 +28,7 @@ import { JsonPipe } from '@angular/common';
     ResultComponent,
     HeaderComponent,
     FooterComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
