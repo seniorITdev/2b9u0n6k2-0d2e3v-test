@@ -14,6 +14,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AddComponent } from './components/add/add.component';
 import { ListComponent } from './pages/list/list.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { ResultComponent } from './pages/result/result.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -25,6 +26,7 @@ import { JsonPipe } from '@angular/common';
     AppComponent,
     AddComponent,
     ListComponent,
+    ProfileComponent,
     ResultComponent,
     HeaderComponent,
     FooterComponent,
@@ -34,7 +36,6 @@ import { JsonPipe } from '@angular/common';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    FormsModule,
     JsonPipe,
     HttpClientModule,
     CommonModule,

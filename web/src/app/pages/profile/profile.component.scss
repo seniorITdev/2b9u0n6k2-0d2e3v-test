@@ -1,0 +1,48 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 8rem;
+    gap: 4rem;
+}
+
+.custom-form-checkbox {
+    display: flex;
+}
+
+.custom-form-checkbox div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+
+#skills {
+    background-color: #f8f8f8;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+    color: #333;
+    width: 300px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    appearance: none; 
+  
+    option {
+      padding: 10px;
+    }
+  }
+
+label {
+    margin-right: 20px;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+  }
+  
+  input[type="checkbox"]:checked {
+    background-color: #4CAF50;
+  }

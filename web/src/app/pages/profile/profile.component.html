@@ -1,0 +1,20 @@
+<div class="container">
+    <div class="custom-form-select">
+        <label for="skills">Primary Skill:</label>
+        <select id="skills" [formControl]="selectedOption" (change)="updateOptions(selectedOption.value)">
+          <option *ngFor="let option of options" [value]="option.value">
+            {{option.label}}
+          </option>
+        </select>
+        <div *ngIf="selectedOption.invalid && selectedOption.touched">
+          Primary skill is required
+        </div>
+    </div>
+    <div class="custom-form-checkbox">
+        <label>Skills:</label>
+        <div *ngFor="let option of options">
+            <input type="checkbox" id="{{option.value}}" [(ngModel)]="option.checked" [disabled]="option.disabled">
+            <label for="{{option.value}}">{{option.label}}</label>
+        </div>
+    </div>
+</div>
