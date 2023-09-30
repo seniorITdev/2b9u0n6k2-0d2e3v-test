@@ -1,0 +1,43 @@
+<div>
+  <h1>Profile Page</h1>
+  <form #profileForm="ngForm" (ngSubmit)="onSubmit(profileForm)">
+    <div class="form-group">
+      <label for="primarySkill">Primary Skill</label>
+      <select
+        class="form-control"
+        id="primarySkill"
+        name="primarySkill"
+        required
+        [(ngModel)]="primarySkill"
+      >
+        <option value="Javascript">Javascript</option>
+        <option value="Python">Python</option>
+        <option value="C++">C++</option>
+        <option value="Java">Java</option>
+        <option value="C#">C#</option>
+      </select>
+      <div *ngIf="primarySkill === ''" class="alert alert-danger">
+        Primary Skill is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Skills</label>
+      <div *ngFor="let skill of skills">
+        <div class="checkbox">
+          <input
+            type="checkbox"
+            id="{{ skill }}"
+            name="{{ skill }}"
+            [(ngModel)]="selectedSkills[skill]"
+            [disabled]="skill === primarySkill"
+            [checked]="selectedSkills[skill]"
+          />
+          <label for="{{ skill }}">{{ skill }}</label>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
