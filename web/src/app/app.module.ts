@@ -17,8 +17,10 @@ import { ListComponent } from './pages/list/list.component';
 import { ResultComponent } from './pages/result/result.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ToastrModule } from 'ngx-toastr';
 
 import { JsonPipe } from '@angular/common';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +30,10 @@ import { JsonPipe } from '@angular/common';
     ResultComponent,
     HeaderComponent,
     FooterComponent,
+    ProfileComponent,
   ],
   imports: [
+    ToastrModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     FormsModule,

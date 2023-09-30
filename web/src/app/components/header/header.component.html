@@ -5,6 +5,15 @@
   <div class="d-flex align-items-center">
     <span
       class="header-menu p-3"
+      (click)="setActiveButton('profile')"
+      [ngClass]="{ active: active === 'profile' }"
+      [routerLink]="['/profile']"
+      routerLinkActive="active"
+    >
+      Profile
+    </span>
+    <span
+      class="header-menu p-3"
       (click)="setActiveButton('list')"
       [ngClass]="{ active: active === 'list' }"
       [routerLink]="['/list']"
