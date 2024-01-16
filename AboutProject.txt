@@ -1,1 +1,21 @@
 What does this project do?
+
+This project is a kind of CRUD project regarding table component which is for the frontend side.
+and then calculate the price of each person and get the average price.
+After that, project decide that who and how much has payout more than others. and also decide which transaction is needed.
+
+And about the whole project, this is to book and buy the ticket for travellers which was added in the list.
+
+This project mainly use POST method for payout: /posts   which is processed in server.
+
+
+InputData Type:
+type dataType = {
+                    name: string,
+                    amount: number,
+                    status: "ACTIVE" | "DONE",
+                }
+request payload DTO:
+                {
+                    expense: dataType[],
+                }
